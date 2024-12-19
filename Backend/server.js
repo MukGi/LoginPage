@@ -2,16 +2,16 @@
  * Dependencies import
  */
 const express = require('express')
-const PORT = process.env.PORTS
-const PORTS = 4000
+const PORT = process.env.PORTS||4000
 require('dotenv/config')
 const app = express()
 const mongoose = require('mongoose')
+const cors =require('cors')
 
 /**
  * Routes
  */
-const Useroute = require('./Backend/Router/Login.routes')
+const Loginroute = require('./Router/Login.routes')
 
 /**DB Connection */
 mongoose.connect(process.env.MONGO_DB)
@@ -22,11 +22,13 @@ mongoose.connect(process.env.MONGO_DB)
 .catch(()=>{
     console.log("Failed Connection");
 })
+
 /**
  * Route References
  */
 app.use(express.json())
-app.use('/Login',Useroute)
+app.use(cors())
+app.use('/Login',Loginroute)
 
 
 app.get('/', async (req,res)=>{
@@ -37,6 +39,7 @@ app.get('/', async (req,res)=>{
     }
 })
 
-app.listen(PORTS,()=>{
-    console.log(`Express server running at http://localhost:${PORTS}/`);
+
+app.listen(PORT,()=>{
+    console.log(`Express server running at http://localhost:${PORT}/`);
 })
