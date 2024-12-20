@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:4000/Login/users'
+const API_URL = 'http://localhost:4000/Login/Admin'
 
 //get all users
 // async function fetchUsers(API_URL) {

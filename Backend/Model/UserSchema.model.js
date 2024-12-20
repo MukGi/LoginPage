@@ -1,6 +1,5 @@
 //Acitvage Mongoose
 const mongoose = require('mongoose');
-const { timeStamp } = require('node:console');
 
 //Create User Schema
 const UserSchema = mongoose.Schema({

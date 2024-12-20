@@ -1,4 +1,3 @@
-const { error } = require('console');
 const Admins = require('../Model/AdminSchema.model')
 
 //Create admin
@@ -35,13 +34,16 @@ const deleteAdmin = async (req, res)=>{
 //Get least of all admins
 const getAllAdmins = async (req,res)=>{
     try {
-        if(!Admins){
+        const admins = await Admins.find({})
+        if(!admins){
             res.status(404).json({message:"No Admins found"})
         }
         else{
-            const admins = await Admins.find({})
-            res.status(200).json({success: true, data: admins})
+            const allAdmins = await Admins.find({})
+            //res.status(200).json({success: true, data: allAdmins})
+            res.status(200).json({success:true, data: allAdmins})
         }
+
         
 
     } catch (e) {
